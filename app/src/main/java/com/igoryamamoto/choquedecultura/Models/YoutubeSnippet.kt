@@ -11,9 +11,9 @@ class YoutubeSnippet {
     @Expose
     @SerializedName("description")
     var description: String? = null
- //   @Expose
- //   @SerializedName("thumbnails")
- //   var thumbnails: YoutubeThumbnails? = null
+    @Expose
+    @SerializedName("thumbnails")
+    var thumbnails: YoutubeThumbnails? = null
     @Expose
     @SerializedName("resourceId")
     var resourceId: YoutubeResourceId? = null
