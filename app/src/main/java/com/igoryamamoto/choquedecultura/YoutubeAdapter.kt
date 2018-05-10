@@ -8,7 +8,7 @@ import com.igoryamamoto.choquedecultura.Models.YoutubeItem
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_youtube_cell.view.*
 
-class YoutubeAdapter: RecyclerView.Adapter<YoutubeViewHolder>() {
+class YoutubeAdapter(val videoClickListener: VideoClickListener): RecyclerView.Adapter<YoutubeViewHolder>() {
 
     var items: List<YoutubeItem> = emptyList()
         set(value) {
@@ -28,6 +28,9 @@ class YoutubeAdapter: RecyclerView.Adapter<YoutubeViewHolder>() {
     override fun onBindViewHolder(holder: YoutubeViewHolder, position: Int) {
         val item = items[position]
         holder.bind(item)
+        holder.view.setOnClickListener {
+            videoClickListener.onItemClicked(item)
+        }
     }
 }
 
@@ -40,4 +43,8 @@ class YoutubeViewHolder(var view: View): RecyclerView.ViewHolder(view) {
         Picasso.get().load(item.snippet?.thumbnails?.default?.url).into(view.thumbnailImageView)
     }
 
+}
+
+interface VideoClickListener {
+    fun onItemClicked(item:YoutubeItem)
 }
